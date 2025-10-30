@@ -19,39 +19,76 @@ min.addEventListener('click', function(){
 const botaoCorFundo = document.getElementById("mudarCorFundo");
 const fundo = document.getElementById("geral")
 
-botaoCorFundo.addEventListener('click', function() {
-
+function mudarFundo(){
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
    
     document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+}
 
+botaoCorFundo.addEventListener('click', function() {
+   mudarFundo();
 });
 
 const mudarCorTitulo = document.getElementById("mudarCorTitulo");
 const titulo = document.getElementById("Titulo")
 
-mudarCorTitulo.addEventListener('click', function() {
-
+function mudarTituloCor(){
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
    
     titulo.style.color= `rgb(${r}, ${g}, ${b})`;
+}
 
+mudarCorTitulo.addEventListener('click', function() {
+  mudarTituloCor();
 });
 
 const mudarCorP = document.getElementById("mudarCorP");
 const paragrafo = document.getElementById("paragrafo")
 
-mudarCorP.addEventListener('click', function() {
-
+function mudarParagraCor(){
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
    
     paragrafo.style.color= `rgb(${r}, ${g}, ${b})`;
+}
 
+mudarCorP.addEventListener('click', function() {
+  mudarParagraCor();
 });
 
+    const fontes = [
+      "Roboto", "Lato", "Montserrat", "Open Sans", "Oswald",
+      "Raleway", "Poppins", "Merriweather", "Ubuntu", "Inconsolata",
+      "PT Sans", "Dancing Script", "Rubik", "Playfair Display", "Fira Sans"
+    ];
+
+    const linkFonts = document.getElementById("googleFontsLink");
+
+    function fonteAleatoria() {
+      return fontes[Math.floor(Math.random() * fontes.length)];
+    }
+
+    function aplicarFonte(elemento, fonte) {
+      linkFonts.href = `https://fonts.googleapis.com/css2?family=${fonte.replace(/ /g, '+')}&display=swap`;
+      elemento.style.fontFamily = `'${fonte}', sans-serif`;
+    }
+
+    document.getElementById("btnTitulo").addEventListener("click", () => {
+      aplicarFonte(titulo, fonteAleatoria());
+    });
+
+    document.getElementById("btnParagrafo").addEventListener("click", () => {
+      aplicarFonte(paragrafo, fonteAleatoria());
+    });
+
+     document.getElementById("btnTudo").addEventListener("click", () => {
+      mudarFundo();
+      mudarParagraCor();
+      mudarTituloCor();
+
+    });
